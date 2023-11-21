@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
+
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { Observable, tap } from 'rxjs';
     ReactiveFormsModule
 
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

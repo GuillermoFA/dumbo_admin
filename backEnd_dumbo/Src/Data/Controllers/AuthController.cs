@@ -60,15 +60,28 @@ namespace backEnd_dumbo.Src.Data.Controllers
             var result = BCrypt.Net.BCrypt.Verify(loginUserDto.Password, user.Password);
             if(!result) return BadRequest("Invalid Credentials");
 
-            var token = CreateToken(user);
-            return token;
+            string token = CreateToken(user);
+
+            var response = new 
+            {
+                token,
+                user.Rut,
+                user.Name,
+                user.Email,
+                user.Role,
+                message = "Login Success"
+
+            };
+
+            return Ok(response);
         }
 
         private string CreateToken(User user)
         {
-            var claims = new List<Claim>{
-                new ("email", user.Email),
-                new ("role", user.RoleId.ToString()),
+            List<Claim> claims = new List<Claim>(){
+                new Claim("rut", "" + user.Rut),
+                new Claim("name", "" + user.Name),
+                new Claim("email", "" + user.Email),
             };
 
 

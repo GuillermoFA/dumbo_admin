@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/auth/login.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { LoginRequest } from 'src/app/services/auth/loginRequest';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,9 @@ export class LoginComponent implements OnInit{
 
   constructor(
     public loginService: LoginService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private cookiesService: CookieService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -35,6 +39,8 @@ export class LoginComponent implements OnInit{
       this.loginService.login(credentials).subscribe({
         next: (userData) => {
           console.log(userData);
+          this.cookiesService.set('token', userData.token);
+          this.router.navigateByUrl('/login');
           this.loginForm.reset();
         },
         error:(errorData) => {
@@ -42,11 +48,21 @@ export class LoginComponent implements OnInit{
           this.loginError = errorData;
         },
         complete: () => {
-          console.log('completado');
+          console.log('Completed login');
         }
       })
     }
+    else{
+      this.loginForm.markAllAsTouched();
+      console.log("Error en un campo");
+    }
+  }
 
+  get email(){
+    return this.loginForm.controls.email;
+  }
+  get password(){
+    return this.loginForm.controls.password;
   }
 
 }
