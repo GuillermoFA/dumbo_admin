@@ -68,7 +68,7 @@ namespace backEnd_dumbo.Src.Data.Controllers
                 user.Rut,
                 user.Name,
                 user.Email,
-                user.Role,
+                user.RoleId,
                 message = "Login Success"
 
             };

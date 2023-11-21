@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { LoginRequest } from './loginRequest';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { User } from './user';
-import { CookieService } from 'ngx-cookie-service';
+
 
 
 
@@ -25,12 +25,6 @@ export class LoginService {
     );
   }
 
-
-
-
-
-
-
   private handleError(error:HttpErrorResponse){
     if(error.status==0){ //No hay respuesta
       console.error('Se ha producido un error ', error);
@@ -38,7 +32,7 @@ export class LoginService {
     else{
       console.error('BackEnd retorna codigo de estado', error.status, error.error);
     }
-    return throwError(()=> new Error('Algo fallo. intentar denuevo'));
+    return throwError(()=> new Error('Tienes un campo invalido, revisa tus datos.'));
   }
 
 

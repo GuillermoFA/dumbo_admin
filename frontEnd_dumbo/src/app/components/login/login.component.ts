@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { LoginRequest } from 'src/app/services/auth/loginRequest';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -36,16 +37,26 @@ export class LoginComponent implements OnInit{
   login(){
     if(this.loginForm.valid){
       const credentials = this.loginForm.value as LoginRequest;
+
       this.loginService.login(credentials).subscribe({
         next: (userData) => {
-          console.log(userData);
-          this.cookiesService.set('token', userData.token);
-          this.router.navigateByUrl('/login');
-          this.loginForm.reset();
+          if(userData.roleId==1){
+            console.log(userData);
+            this.cookiesService.set('token', userData.token);
+            this.router.navigateByUrl('/dashboard');
+            this.loginForm.reset();
+          } else {
+            this.loginError = 'Usuario no autorizado.';
+          }
         },
         error:(errorData) => {
           console.error(errorData);
           this.loginError = errorData;
+          if (errorData instanceof HttpErrorResponse && errorData.status === 401) {
+            this.loginError = 'Credenciales incorrectas.';
+          } else {
+            this.loginError = 'Error desconocido al iniciar sesión.';
+          }
         },
         complete: () => {
           console.log('Completed login');
