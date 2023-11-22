@@ -4,9 +4,6 @@ import { LoginRequest } from './loginRequest';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { User } from './user';
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })

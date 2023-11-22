@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Guillermo\\Desktop\\PROYECTO DUMBO\\backend_dumbo\\backEnd_dumbo.csproj": {}
+    "C:\\Users\\Guillermo\\Desktop\\PROYECTO DUMBO\\backEnd_dumbo\\backEnd_dumbo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Guillermo\\Desktop\\PROYECTO DUMBO\\backend_dumbo\\backEnd_dumbo.csproj": {
+    "C:\\Users\\Guillermo\\Desktop\\PROYECTO DUMBO\\backEnd_dumbo\\backEnd_dumbo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Guillermo\\Desktop\\PROYECTO DUMBO\\backend_dumbo\\backEnd_dumbo.csproj",
+        "projectUniqueName": "C:\\Users\\Guillermo\\Desktop\\PROYECTO DUMBO\\backEnd_dumbo\\backEnd_dumbo.csproj",
         "projectName": "backEnd_dumbo",
-        "projectPath": "C:\\Users\\Guillermo\\Desktop\\PROYECTO DUMBO\\backend_dumbo\\backEnd_dumbo.csproj",
+        "projectPath": "C:\\Users\\Guillermo\\Desktop\\PROYECTO DUMBO\\backEnd_dumbo\\backEnd_dumbo.csproj",
         "packagesPath": "C:\\Users\\Guillermo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Guillermo\\Desktop\\PROYECTO DUMBO\\backend_dumbo\\obj\\",
+        "outputPath": "C:\\Users\\Guillermo\\Desktop\\PROYECTO DUMBO\\backEnd_dumbo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Guillermo\\AppData\\Roaming\\NuGet\\NuGet.Config"

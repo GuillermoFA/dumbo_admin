@@ -1,0 +1,39 @@
+<header>
+  <app-navbar></app-navbar>
+</header>
+<div *ngIf="users.length === 0">
+  <p>No se encuentran usuarios en el sistema.</p>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>RUT</th>
+      <th>Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Points</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.rut }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.points }}</td>
+      <td>
+        <button (click)="updateUser(user.id)">Edit</button>
+        <button (click)="deleteUser(user.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<footer>
+  <app-footer></app-footer>
+</footer>
+

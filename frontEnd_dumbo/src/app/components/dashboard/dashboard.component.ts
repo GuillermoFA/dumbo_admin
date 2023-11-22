@@ -4,6 +4,8 @@ import { ApiUserService } from 'src/app/services/api/api-user.service';
 import { User } from 'src/app/services/auth/user';
 import { Subject } from 'rxjs';
 import { catchError, takeUntil } from 'rxjs/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -13,11 +15,10 @@ import { catchError, takeUntil } from 'rxjs/operators';
 export class DashboardComponent implements OnInit{
   users: User[] = [];
   userForm: FormGroup;
-  selectedUserId: number | null = null;
   rutSearch: string = '';
   private ngUnsubscribe = new Subject();
 
-  constructor(private userApiService: ApiUserService, private fb: FormBuilder) {
+  constructor(private userApiService: ApiUserService, private fb: FormBuilder, private modalService: NgbModal) {
     this.userForm = this.fb.group({
       rut: [''],
       name: [''],
@@ -58,16 +59,30 @@ export class DashboardComponent implements OnInit{
     );
   }
 
-  updateUser(){
-    if(this.selectedUserId !== null){
+  openDeleteConfirmationModal(userId: number, content: any) {
+    this.modalService.open(content).result.then(
+      (result) => {
+        if (result === 'Ok click') {
+          this.deleteUser(userId);
+        }
+      },
+      (reason) => {
+        // Se ejecuta cuando se cierra el modal sin hacer clic en OK
+        console.log(`Dismissed with reason: ${reason}`);
+      }
+    );
+  }
+
+  updateUser(id: number){
+    if(id !== null){
       const updatedUser: User = this.userForm.value;
-      this.userApiService.putUser(this.selectedUserId, updatedUser).subscribe(
+      this.userApiService.putUser(id, updatedUser).subscribe(
         (updatedUser)=>{
-          const index = this.users.findIndex((user)=>user.id === this.selectedUserId);
+          const index = this.users.findIndex((user)=>user.id === id);
           if (index !== -1){
             this.users[index] = updatedUser;
             this.userForm.reset();
-            this.selectedUserId = null;
+            id = 0;
           }
         },
         (error)=>{
