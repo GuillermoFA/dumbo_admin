@@ -16,6 +16,10 @@ export class ApiUserService {
     return this.httpClient.get<User[]>(`${this.apiUrl}Users`);
   }
 
+  getUsersById(id: number): Observable<User>{
+    return this.httpClient.get<User>(`${this.apiUrl}Users/${id}`);
+  }
+
   postUser(user: User): Observable<User>{
     return this.httpClient.post<User>(`${this.apiUrl}Users`, user);
   }
@@ -27,6 +31,8 @@ export class ApiUserService {
   deleteUser(id: number): Observable<any>{
     return this.httpClient.delete(`${this.apiUrl}Users/${id}`);
   }
+
+
 
 
 }

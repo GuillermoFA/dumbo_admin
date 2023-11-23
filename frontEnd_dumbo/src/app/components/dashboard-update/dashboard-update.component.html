@@ -1,1 +1,24 @@
-<p>dashboard-update works!</p>
+<div class="container mt-3">
+  <h2>Actualizar Usuario</h2>
+  <form [formGroup]="userForm" (submit)="updateUser()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Nombre:</label>
+      <input type="text" class="form-control" id="name" formControlName="name">
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Apellido:</label>
+      <input type="text" class="form-control" id="lastName" formControlName="lastName">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Correo:</label>
+      <input type="email" class="form-control" id="email" formControlName="email">
+    </div>
+    <div class="mb-3">
+      <label for="points" class="form-label">Puntos:</label>
+      <input type="points" class="form-control" id="points" formControlName="points">
+    </div>
+    <!-- Otros campos del formulario -->
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+    <button type="button" class="btn btn-secondary" (click)="cancelUpdate()">Cancelar</button>
+  </form>
+</div>
