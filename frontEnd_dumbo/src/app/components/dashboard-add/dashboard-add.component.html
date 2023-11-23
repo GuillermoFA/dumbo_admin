@@ -1,0 +1,26 @@
+<div class="container mt-3">
+  <h2>Agregar Usuario</h2>
+  <form [formGroup]="userForm" (submit)="addUser()">
+    <div class="mb-3">
+      <label for="rut" class="form-label">RUT:</label>
+      <input type="text" class="form-control" id="rut" formControlName="rut" required>
+    </div>
+    <div class="mb-3">
+      <label for="name" class="form-label">Nombre:</label>
+      <input type="text" class="form-control" id="name" formControlName="name" required>
+    </div>
+    <div class="mb-3">
+      <label for="lastname" class="form-label">Apellido:</label>
+      <input type="text" class="form-control" id="lastname" formControlName="lastname" required>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email:</label>
+      <input type="email" class="form-control" id="email" formControlName="email" required>
+    </div>
+    <div class="mb-3">
+      <label for="points" class="form-label">Puntos:</label>
+      <input type="number" class="form-control" id="points" formControlName="points" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar</button>
+  </form>
+</div>

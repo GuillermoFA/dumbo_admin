@@ -5,16 +5,18 @@
   <p>No se encuentran usuarios en el sistema.</p>
 </div>
 
-<table>
+<button routerLink="/dashboard/add" class="btn btn-success mb-3">Agregar Usuario</button>
+
+<table class="table">
   <thead>
     <tr>
       <th>ID</th>
       <th>RUT</th>
-      <th>Name</th>
-      <th>Last Name</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
       <th>Email</th>
-      <th>Points</th>
-      <th>Actions</th>
+      <th>Puntos</th>
+      <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -26,14 +28,13 @@
       <td>{{ user.email }}</td>
       <td>{{ user.points }}</td>
       <td>
-        <button (click)="updateUser(user.id)">Edit</button>
-        <button (click)="deleteUser(user.id)">Delete</button>
+        <button (click)="deleteUser(user.id)" class="btn btn-danger btn-sm">Eliminar</button>
+        <button routerLink="/dashboard/edit/{{ user.id }}" class="btn btn-warning btn-sm">Editar</button>
       </td>
     </tr>
   </tbody>
 </table>
 
-<footer>
-  <app-footer></app-footer>
-</footer>
+<app-footer></app-footer>
+
 

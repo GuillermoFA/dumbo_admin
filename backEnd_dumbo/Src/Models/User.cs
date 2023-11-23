@@ -21,7 +21,7 @@ namespace backEnd_dumbo.Src.Models
         public string Password { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Los puntos son obligatorios.")]
-        public string Points { get; set; } = string.Empty;
+        public int Points { get; set; }
 
         // Entity Framework Core Relationships
         public int RoleId { get; set; }

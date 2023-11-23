@@ -10,6 +10,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DashboardAddComponent } from './components/dashboard-add/dashboard-add.component';
+import { DashboardUpdateComponent } from './components/dashboard-update/dashboard-update.component';
+
 
 
 
@@ -19,14 +22,17 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     LoginComponent,
     FooterComponent,
     NavbarComponent,
-    DashboardComponent
+    DashboardComponent,
+    DashboardAddComponent,
+    DashboardUpdateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
 
   ],
   providers: [CookieService],
