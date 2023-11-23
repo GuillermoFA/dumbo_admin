@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard-add.component.css']
 })
 export class DashboardAddComponent implements OnInit{
-
+  dashboardError: string="";
   userForm: FormGroup;
   users: User[] = [];
 
@@ -51,4 +51,14 @@ export class DashboardAddComponent implements OnInit{
     );
   }
 
+  cancelUpdate() {
+
+      // Restablecer el formulario a los valores originales o limpiar cambios no guardados
+      this.userForm.reset();
+      console.log('Insert cancelada. Formulario restablecido.');
+      this.router.navigate(['/dashboard']);  // Redirigir a la página principal
+  }
+
 }
+
+

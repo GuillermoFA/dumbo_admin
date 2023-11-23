@@ -1,28 +1,27 @@
 <div class="login">
   <form class="custom-form" method="post" [formGroup]="loginForm">
     <p class="text-danger">{{loginError}}</p>
-    <h1>Login</h1>
+    <h1 class="text-center">Inicio de sesión</h1>
     <input
-      type="email"
-      name="email"
-      placeholder="Email"
+      type="name"
+      name="name"
+      placeholder="Nombre de usuario"
       required="required"
-      for="email"
-      formControlName="email"
-      aria-describedby="emailHelp"
+      for="name"
+      formControlName="name"
     />
-    <div *ngIf="email.invalid && (email.dirty || email.touched)" class= "text-danger">
-      <div *ngIf="email.errors?.['required']">
+    <div *ngIf="name.invalid && (name.dirty || name.touched)" class= "text-danger">
+      <div *ngIf="name.errors?.['required']">
         El correo electrónico es requerido.
       </div>
-      <div *ngIf="email.errors?.['email']">
+      <div *ngIf="name.errors?.['email']">
         El correo electrónico debe tener un formato válido.
       </div>
     </div>
     <input
       type="password"
       name="password"
-      placeholder="Password"
+      placeholder="Contraseña"
       required="required"
       for="password"
       formControlName="password"

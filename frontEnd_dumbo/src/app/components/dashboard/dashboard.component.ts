@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit{
   users: User[] = [];
   rutSearch: string = '';
   private ngUnsubscribe = new Subject();
+  dashboardError: string="";
 
   constructor(private userApiService: ApiUserService, private fb: FormBuilder) {
   }

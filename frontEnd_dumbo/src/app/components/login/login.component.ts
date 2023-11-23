@@ -25,9 +25,9 @@ export class LoginComponent implements OnInit{
 
   }
   loginForm=this.formBuilder.group({
-    email: [
+    name: [
       '',
-    [Validators.required, Validators.email]],
+    [Validators.required]],
     password:[
       '',
     [Validators.required]],
@@ -69,8 +69,8 @@ export class LoginComponent implements OnInit{
     }
   }
 
-  get email(){
-    return this.loginForm.controls.email;
+  get name(){
+    return this.loginForm.controls.name;
   }
   get password(){
     return this.loginForm.controls.password;

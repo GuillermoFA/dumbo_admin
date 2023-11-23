@@ -13,6 +13,7 @@ export class DashboardUpdateComponent implements OnInit {
   userForm: FormGroup;
   userId?: number;
   user?: User;
+  dashboardError: string="";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -57,7 +58,6 @@ export class DashboardUpdateComponent implements OnInit {
 
   updateUser() {
     const updatedUser: User = this.userForm.value;
-
     if (this.userId !== undefined) {
       this.apiService.putUser(this.userId, updatedUser).subscribe(
         () => {
@@ -75,14 +75,13 @@ export class DashboardUpdateComponent implements OnInit {
   }
 
   cancelUpdate() {
-    const confirmCancel = confirm('¿Seguro que quieres cancelar la actualización?');
-    if (confirmCancel) {
-      // Restablecer el formulario a los valores originales o limpiar cambios no guardados
-      this.userForm.reset();
-      console.log('Actualización cancelada. Formulario restablecido.');
-      this.router.navigate(['/dashboard']);  // Redirigir a la página principal
-    }
+
+    // Restablecer el formulario a los valores originales o limpiar cambios no guardados
+    this.userForm.reset();
+    console.log('Actualización cancelada. Formulario restablecido.');
+    this.router.navigate(['/dashboard']);  // Redirigir a la página principal
   }
+
 
   sureUpdate() {
     const confirmUpdate = confirm('¿Seguro que quieres actualizar el usuario?');
