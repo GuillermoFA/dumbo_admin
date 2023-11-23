@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qFff4BYTwD+j2wMdtKq7eNQD58Xrpm5IyArfJmIDO0aFDzxtD78mP0TU72KauXBlbZCFGnKPnTDsHrvpnmWnmA==",
+  "dgSpecHash": "+irz5/P9lp+xvoxs/M/80MVYg1hzFAMB+Pt24srV86qGVA5ibeDqPQne9x2fiA/DuJ9x0UXW6SJLA9IU09OTuA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Guillermo\\Desktop\\PROYECTO DUMBO\\backEnd_dumbo\\backEnd_dumbo.csproj",
+  "projectFilePath": "C:\\Users\\Guillermo\\Desktop\\PROYECTO DUMBO\\backend_dumbo\\backEnd_dumbo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Guillermo\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Guillermo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

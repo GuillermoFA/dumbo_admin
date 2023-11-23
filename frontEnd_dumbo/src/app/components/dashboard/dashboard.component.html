@@ -1,40 +1,85 @@
-<header>
-  <app-navbar></app-navbar>
-</header>
-<div *ngIf="users.length === 0">
-  <p>No se encuentran usuarios en el sistema.</p>
+<div class="color-table2">
+  <nav class="navbar navbar-dark bg-dark navbar-expand-lg ">
+    <div class="container-fluid">
+      <a class="navbar-brand px-3" routerLink="/dashboard">
+        <img src="assets/image/logoDumbo.png" alt="Logo" height="60">
+      </a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li>
+            <a class="nav-link active px-lg-5 fst-italic" aria-current="page">Sistema de administración DUMBO</a>
+          </li>
+        </ul>
+        <div class="navbar-nav me-auto mb-2">
+        </div>
+    </div>
+    <div class="px-2 py-2">
+      <form [formGroup]="searchForm" (ngSubmit)="search()" class="d-flex input-group">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="RUT o Correo Electrónico"
+          aria-label="Search"
+          formControlName="searchTerm"
+          style="max-width: 500px;"
+        >
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+      </form>
+    </div>
+    <div class="px-2 py-2">
+      <button routerLink="/dashboard/add" class="btn btn-success">Agregar Usuario</button>
+    </div>
+    <div class="px-2">
+      <button routerLink="/login" class="btn btn-outline-danger" (click)="onClickOut()">Cerrar sesión</button>
+    </div>
+  </div>
+  </nav>
+
+    <div class="container mt-5 py-4 card color-table">
+      <div class="d-flex justify-content-center">
+        <h3>
+          Tabla de usuarios
+        </h3>
+      </div>
+      <div class="row">
+        <div>
+          <table class="table  table-hover table-responsive ">
+            <thead >
+              <tr>
+                <th class="px-2">ID</th>
+                <th class="px-2">Nombre</th>
+                <th class="px-2">Apellido</th>
+                <th class="px-2">RUT</th>
+                <th class="px-2">Email</th>
+                <th class="px-2">Puntos</th>
+                <th class="px-2">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of filteredUsers">
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.rut }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.points }}</td>
+                <td>
+                  <button routerLink="/dashboard/edit/{{ user.id }}" class="btn btn-outline-warning btn-sm fw-bolder ">Editar</button>
+                  <button (click)="deleteUser(user.id)" class="btn btn-outline-danger btn-sm fw-bolder ms-3">Eliminar</button>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Mensaje si no hay usuarios -->
+          <div *ngIf="users.length === 0" class="text-center">
+            <p>No se encuentran usuarios en el sistema.</p>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
 
-<button routerLink="/dashboard/add" class="btn btn-success mb-3">Agregar Usuario</button>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nombre</th>
-      <th>Apellido</th>
-      <th>RUT</th>
-      <th>Email</th>
-      <th>Puntos</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of users">
-      <td>{{ user.id }}</td>
-      <td>{{ user.name }}</td>
-      <td>{{ user.lastName }}</td>
-      <td>{{ user.rut }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.points }}</td>
-      <td>
-        <button (click)="deleteUser(user.id)" class="btn btn-danger btn-sm">Eliminar</button>
-        <button routerLink="/dashboard/edit/{{ user.id }}" class="btn btn-warning btn-sm">Editar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<app-footer></app-footer>
 
 

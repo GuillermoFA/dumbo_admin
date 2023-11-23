@@ -1,3 +1,4 @@
+
 <div class="login">
   <form class="custom-form" method="post" [formGroup]="loginForm">
     <p class="text-danger">{{loginError}}</p>
@@ -12,10 +13,7 @@
     />
     <div *ngIf="name.invalid && (name.dirty || name.touched)" class= "text-danger">
       <div *ngIf="name.errors?.['required']">
-        El correo electrónico es requerido.
-      </div>
-      <div *ngIf="name.errors?.['email']">
-        El correo electrónico debe tener un formato válido.
+        El nombre de usuario es requerido.
       </div>
     </div>
     <input

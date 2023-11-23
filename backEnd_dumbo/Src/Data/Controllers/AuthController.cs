@@ -55,7 +55,7 @@ namespace backEnd_dumbo.Src.Data.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login(LoginUserDto loginUserDto)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == loginUserDto.Email);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Name == loginUserDto.Name);
             if (user is null) return BadRequest("Invalid Credentials");
             var result = BCrypt.Net.BCrypt.Verify(loginUserDto.Password, user.Password);
             if(!result) return BadRequest("Invalid Credentials");

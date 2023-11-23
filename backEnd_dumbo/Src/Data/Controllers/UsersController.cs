@@ -31,10 +31,39 @@ namespace backEnd_dumbo.Src.Data.Controllers
             return users;
         }
 
+        // Get user by id
+        [HttpGet("{id}")]
+        public async Task<ActionResult<User>> GetUserById(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if(user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
+        }
+
         // Post new user with rol client
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
+            var existingEmail = await _context.Users.AnyAsync(u => u.Email == user.Email);
+            if (existingEmail)
+            {
+                return BadRequest(new { ErrorMessage = "El correo ya está registrado en el sistema." });
+            }
+
+            var existingRut = await _context.Users.AnyAsync(u => u.Rut == user.Rut);
+            if (existingRut)
+            {
+                return BadRequest(new { ErrorMessage = "El RUT ya está registrado en el sistema." });
+            }
+
+             if (user.Points < 0)
+            {
+                return BadRequest(new { ErrorMessage = "Los puntos no pueden ser un valor negativo." });
+            }
+
             if (rutgx.IsMatch(user.Rut) && emailgx.IsMatch(user.Email))
             {
                 var salt = BCrypt.Net.BCrypt.GenerateSalt(12);
@@ -75,6 +104,12 @@ namespace backEnd_dumbo.Src.Data.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(new { ErrorMessage = "La solicitud contiene datos no válidos.", Errors = ModelState.Values.SelectMany(v => v.Errors) });
+            }
+            
+
+             if (user.Points < 0)
+            {
+                return BadRequest(new { ErrorMessage = "Los puntos no pueden ser un valor negativo." });
             }
 
             // Validar RUT y Email
@@ -123,20 +158,20 @@ namespace backEnd_dumbo.Src.Data.Controllers
             return Ok();
         }
 
-        // TODO: VERIFICAR CORRECTAMENTE SI REALIZARLO DEL BACK O DEL FRONT
-        // Search User by Rut
-        [HttpGet("search/{rut}")]
-        public async Task<ActionResult<User>> SearchUserByRut(string rut)
+        [HttpGet("search")]
+        public ActionResult<IEnumerable<User>> SearchUsers([FromQuery] string term)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Rut == rut);
-            if(user == null)
+            // Lógica de búsqueda en la base de datos
+            var users = _context.Users
+                .Where(u => u.Rut.Contains(term) || u.Email.Contains(term))
+                .ToList();
+            
+            if (users == null || !users.Any())
             {
-                return NotFound();
+                return NotFound("No se encontraron usuarios para el término de búsqueda proporcionado.");
             }
-            return Ok(user);
+
+            return Ok(users);
         }
-
-
-
     }
-}
+}   
