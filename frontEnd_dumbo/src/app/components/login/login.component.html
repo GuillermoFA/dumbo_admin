@@ -1,36 +1,41 @@
+<!-- login.component.html -->
+<div class="container py-5">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-5">
+      <div class="card shadow-lg py-2" style="border-radius: 1rem;">
+        <div class="card-body p-5 text-center">
+          <div class="login">
+            <form class="custom-form" [formGroup]="loginForm" (ngSubmit)="login()">
+              <a class="navbar-brand px-3">
+                <img src="assets/image/logoDumbo.png" alt="Logo" height="60">
+              </a>
+              <p class="text-danger">{{loginError}}</p>
+              <h3 class="text-center mb-5">Sistema Dumbo</h3>
+              <div class="mb-3">
+                <label for="name"></label>
+                <input type="text" class="form-control" id="name" placeholder="Ingresa tu nombre de usuario" formControlName="name">
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+                  <div *ngIf="name.errors?.['required']">
+                    El nombre de usuario es requerido.
+                  </div>
+                </div>
+              </div>
 
-<div class="login">
-  <form class="custom-form" method="post" [formGroup]="loginForm">
-    <p class="text-danger">{{loginError}}</p>
-    <h1 class="text-center">Inicio de sesión</h1>
-    <input
-      type="name"
-      name="name"
-      placeholder="Nombre de usuario"
-      required="required"
-      for="name"
-      formControlName="name"
-    />
-    <div *ngIf="name.invalid && (name.dirty || name.touched)" class= "text-danger">
-      <div *ngIf="name.errors?.['required']">
-        El nombre de usuario es requerido.
+              <div class="mb-3">
+                <label for="password"></label>
+                <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña" formControlName="password">
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+                  <div *ngIf="password.errors?.['required']">
+                    La contraseña es requerida.
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-outline-success border border-3">Iniciar sesión</button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-    <input
-      type="password"
-      name="password"
-      placeholder="Contraseña"
-      required="required"
-      for="password"
-      formControlName="password"
-    />
-    <div *ngIf="password.invalid && (password.dirty || password.touched)" class= "text-danger">
-      <div *ngIf="password.errors?.['required']">
-        La contraseña es requerida.
-      </div>
-    </div>
-    <button type="submit" (click)="login()">
-      Iniciar sesión
-    </button>
-  </form>
-</div>
+  </div>
+  </div>
