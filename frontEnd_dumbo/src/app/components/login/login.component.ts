@@ -54,8 +54,11 @@ export class LoginComponent implements OnInit{
           this.loginError = errorData;
           if (errorData instanceof HttpErrorResponse && errorData.status === 401) {
             this.loginError = 'Credenciales incorrectas.';
-          } else {
-            this.loginError = 'Error desconocido al iniciar sesión.';
+          }
+          if (errorData instanceof HttpErrorResponse && errorData.status === 400) {
+            this.loginError = 'El usuario no se encuentra en el sistema.';
+          }else {
+            this.loginError = 'El usuario no se encuentra en el sistema.';
           }
         },
         complete: () => {

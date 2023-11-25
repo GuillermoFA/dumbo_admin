@@ -55,9 +55,7 @@ internal class Program
         app.UseCors(MyAllowSpecificOrigins);
         app.UseAuthorization();
 
-        AppDbInitializer.Seed(app);
-
-
+        app.MapControllers();
         app.Run();
     }
 }

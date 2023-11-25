@@ -1,0 +1,23 @@
+.color-table2{
+  background-color: black;
+  min-height: 100vh;
+}
+
+.color-table{
+  background-color: #d3efb4;
+}
+
+#container {
+
+
+  margin: 5;
+  padding: 5;
+
+  min-height: 100dvh;
+  height: 80%;
+  min-width: 100%;
+
+  background-image: url(src/assets/image/gradientebackground.jpg);
+  background-position: center;
+  background-size: cover;
+}

@@ -1,45 +1,59 @@
-<div class="container mt-3">
-  <h2>Actualizar Usuario</h2>
-  <form [formGroup]="userForm" (submit)="updateUser()">
-    <!-- Nombre -->
-    <div class="mb-3">
-      <label for="name" class="form-label">Nombre:</label>
-      <input type="text" class="form-control" id="name" formControlName="name" required>
-      <div *ngIf="userForm.get('name')?.hasError('required') && (userForm.get('name')?.dirty || userForm.get('name')?.touched)" class="text-danger">
-        El Nombre es obligatorio.
+<div class="container py-5 my-5">
+  <div class="row justify-content-center align-items-center">
+    <div class="card shadow-lg col-sm-6">
+      <div class="card-header bg-success text-white">
+        <h2>Actualizar Usuario</h2>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="userForm" (submit)="updateUser()">
+          <!-- Nombre -->
+          <div class="mb-3">
+            <label for="name" class="form-label">Nombre:</label>
+            <input type="text" class="form-control" id="name" formControlName="name" required>
+            <div *ngIf="userForm.get('name')?.hasError('required') && (userForm.get('name')?.dirty || userForm.get('name')?.touched)" class="text-danger">
+              El Nombre es obligatorio.
+            </div>
+          </div>
+          <!-- Apellido -->
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Apellido:</label>
+            <input type="text" class="form-control" id="lastName" formControlName="lastName" required>
+            <div *ngIf="userForm.get('lastName')?.hasError('required') && (userForm.get('lastName')?.dirty || userForm.get('lastName')?.touched)" class="text-danger">
+              El Apellido es obligatorio.
+            </div>
+          </div>
+          <!-- Correo -->
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo:</label>
+            <input type="email" class="form-control" id="email" formControlName="email" required>
+            <div *ngIf="userForm.get('email')?.hasError('required') && (userForm.get('email')?.dirty || userForm.get('email')?.touched)" class="text-danger">
+              El Correo es obligatorio.
+            </div>
+            <div *ngIf="userForm.get('email')?.hasError('email') && (userForm.get('email')?.dirty || userForm.get('email')?.touched)" class="text-danger">
+              Ingrese un correo electrónico válido.
+            </div>
+          </div>
+          <!-- Puntos -->
+          <div class="mb-3">
+            <label for="points" class="form-label">Puntos:</label>
+            <input type="number" class="form-control" id="points" formControlName="points" required>
+            <div *ngIf="userForm.get('points')?.hasError('required') && (userForm.get('points')?.dirty || userForm.get('points')?.touched)" class="text-danger">
+              Los Puntos son obligatorios.
+            </div>
+            <div *ngIf="userForm.get('points')?.hasError('min') && (userForm.get('points')?.dirty || userForm.get('points')?.touched)" class="text-danger">
+              Los Puntos deben ser igual o mayores a 0.
+            </div>
+          </div>
+          <div class="text-center p-1">
+            <button type="submit" class="btn btn-success m-lg-2">Actualizar</button>
+          <button type="button" class="btn btn-danger m-lg-2" (click)="cancelUpdate()">Cancelar</button>
+          </div>
+        </form>
       </div>
     </div>
-    <!-- Apellido -->
-    <div class="mb-3">
-      <label for="lastName" class="form-label">Apellido:</label>
-      <input type="text" class="form-control" id="lastName" formControlName="lastName" required>
-      <div *ngIf="userForm.get('lastName')?.hasError('required') && (userForm.get('lastName')?.dirty || userForm.get('lastName')?.touched)" class="text-danger">
-        El Apellido es obligatorio.
-      </div>
-    </div>
-    <!-- Correo -->
-    <div class="mb-3">
-      <label for="email" class="form-label">Correo:</label>
-      <input type="email" class="form-control" id="email" formControlName="email" required>
-      <div *ngIf="userForm.get('email')?.hasError('required') && (userForm.get('email')?.dirty || userForm.get('email')?.touched)" class="text-danger">
-        El Correo es obligatorio.
-      </div>
-      <div *ngIf="userForm.get('email')?.hasError('email') && (userForm.get('email')?.dirty || userForm.get('email')?.touched)" class="text-danger">
-        Ingrese un correo electrónico válido.
-      </div>
-    </div>
-    <!-- Puntos -->
-    <div class="mb-3">
-      <label for="points" class="form-label">Puntos:</label>
-      <input type="number" class="form-control" id="points" formControlName="points" required>
-      <div *ngIf="userForm.get('points')?.hasError('required') && (userForm.get('points')?.dirty || userForm.get('points')?.touched)" class="text-danger">
-        Los Puntos son obligatorios.
-      </div>
-      <div *ngIf="userForm.get('points')?.hasError('min') && (userForm.get('points')?.dirty || userForm.get('points')?.touched)" class="text-danger">
-        Los Puntos deben ser igual o mayores a 0.
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Actualizar</button>
-    <button type="button" class="btn btn-secondary" (click)="cancelUpdate()">Cancelar</button>
-  </form>
+  </div>
 </div>
+
+
+
+

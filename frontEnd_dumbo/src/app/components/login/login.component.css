@@ -1,0 +1,14 @@
+#container {
+
+
+  margin: 5;
+  padding: 5;
+
+  min-height: 100dvh;
+  height: 80%;
+  min-width: 100%;
+
+  background-image: url(src/assets/image/dumboform.avif);
+  background-position: center;
+  background-size: cover;
+}
